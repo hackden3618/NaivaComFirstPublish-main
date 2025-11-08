@@ -1,0 +1,240 @@
+:root {
+  --bg: #071028;
+  --card: #0f172430;
+  --accent: #2b6be6;
+  --muted: #9aa4b2;
+}
+body {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: linear-gradient(180deg, #071028, #0f1724);
+  color: #e6eef8;
+  margin: 0;
+  padding: 20px;
+}
+.site-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+}
+.brand.small {
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+.build-main {
+  max-width: 980px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+}
+.hero-card {
+  margin-top: 60px;
+  background: var(--card);
+  padding: 18px;
+  border-radius: 12px;
+}
+.form-card {
+  margin-top: 60px;
+  background: var(--card);
+  padding: 18px;
+  border-radius: 12px;
+}
+.field {
+  margin-bottom: 12px;
+}
+.field label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+#submitBtn {
+  background: linear-gradient(90deg, #2b6be6, #2563eb);
+  border: none;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#submitBtn[disabled] {
+  opacity: 0.7;
+}
+#feedback {
+  margin-top: 12px;
+  color: #bff0c9;
+}
+.help {
+  background: transparent;
+  padding: 12px;
+  color: var(--muted);
+}
+.icons img {
+  margin-right: 8px;
+}
+.help {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 16px;
+  border-radius: 12px;
+  color: var(--muted);
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+}
+.help h3 {
+  color: #e6eef8;
+  margin-top: 0;
+}
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.icons img {
+  margin-right: 8px;
+  filter: invert(1) hue-rotate(180deg) saturate(1.2);
+  background: transparent;
+  padding: 4px;
+  border-radius: 6px;
+}
+@media (max-width: 900px) {
+  .build-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Light theme overrides for build page */
+html.light body {
+  background: none; /* general.css sets the light background image */
+  color: #0b1220;
+}
+html.light .hero-card,
+html.light .form-card,
+html.light .help {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0b1220;
+  box-shadow: 0 8px 24px rgba(10, 10, 10, 0.08);
+}
+html.light .field label {
+  color: #3b3b3b;
+}
+html.light #submitBtn {
+  color: white;
+}
+html.light .icons img {
+  filter: none;
+}
+
+/* helpers extracted from inline attributes */
+.header-controls--compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.map-preview-wrap {
+  margin-top: 12px;
+}
+
+/* ------------------------------------------------------------------
+   Build page: glassy service cards
+   Improve visibility with a blurred glass background and light-mode
+   overrides so cards remain readable in both themes.
+   ------------------------------------------------------------------ */
+.svsItemContainer {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.svsItem .card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.svsItem .card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.svsItem .card .card-body {
+  padding: 12px 14px;
+}
+
+.svsItem .card .card-body h3 {
+  margin: 0 0 6px 0;
+  color: #f8fbff;
+}
+.svsItem .card .muted {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Light theme: brighter glass and dark text for readability */
+html.light .svsItem .card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 255, 255, 0.9)
+  );
+  border: 1px solid rgba(10, 10, 10, 0.06);
+  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.06);
+}
+html.light .svsItem .card .card-body h3 {
+  color: #0b1220;
+}
+html.light .svsItem .card .muted {
+  color: #475569; /* slightly muted dark */
+}
+
+/* ensure choose button appears consistent on build page too */
+.choose-service {
+  background: linear-gradient(90deg, #2b6be6, #2563eb);
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+.choose-service:hover {
+  transform: translateY(-3px);
+}
+
+/* If whatsapp.svg is a monochrome icon, tint it using filter for green color */
+.whatsapp-link img {
+  filter: invert(54%) sepia(74%) saturate(505%) hue-rotate(86deg)
+    brightness(92%) contrast(90%);
+}
+
+@media (max-width: 900px) {
+  .svsItemContainer {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .svsItem .card img {
+    height: 120px;
+  }
+}

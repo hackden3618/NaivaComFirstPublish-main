@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NaivaCom Best Web developers</title>
+    <link rel="icon" href="../images/icons/NaivaComLogo-removebg.png" />
+    <!-- SEO: description, keywords, OG and Twitter cards -->
+    <meta
+      name="description"
+      content="NaivaCom ~ professional web development, UI/UX design, e-commerce solutions, performance and SEO services. Launch your project with a Nairobi-based team focused on conversion and performance."
+    />
+    <meta
+      name="keywords"
+      content="web development, UI design, UX, e-commerce, SEO, Nairobi, web agency, responsive websites"
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://yourdomain.example/" />
+    <meta
+      property="og:title"
+      content="NaivaCom ~ Web development & digital product studio"
+    />
+    <meta
+      property="og:description"
+      content="We build responsive, high-performance websites and web apps: custom development, UI/UX, e-commerce and SEO."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://yourdomain.example/images/NaivaComOgImage.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Preload background images for faster paint -->
+    <link
+      rel="preload"
+      href="images/dark-hexagonal-neon-light-background_485324-2534_imgupscaler.ai_General_4K.jpg"
+      as="image"
+    />
+    <link
+      rel="preload"
+      href="images/icons/luxuriousBackgroundLight_imgupscaler.ai_General_4K.jpg"
+      as="image"
+    />
+    <link rel="stylesheet" href="styles/general.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <script defer src="scripts/home.js"></script>
+    <script defer src="scripts/index.js"></script>
+  </head>
+  <body>
+    <!-- Welcome curtain: covers the viewport while the site finishes loading -->
+    <div
+      id="welcome-curtain"
+      class="welcome-curtain"
+      role="status"
+      aria-live="polite"
+      aria-hidden="false"
+    >
+      <div class="curtain-inner">
+        <div class="curtain-brand">
+          <img
+            src="images/NaivaComLogo.jpeg"
+            alt="NaivaCom logo"
+            width="84"
+            height="84"
+            loading="eager"
+          />
+        </div>
+        <div class="curtain-copy">
+          <h2>Welcome, we are preparing a fast, secure experience</h2>
+          <p class="curtain-sub">Catering to your tech needs...</p>
+        </div>
+        <div class="curtain-spinner" aria-hidden="true">
+          <svg viewBox="0 0 50 50" class="spinner-svg" aria-hidden="true">
+            <circle
+              cx="25"
+              cy="25"
+              r="20"
+              fill="none"
+              stroke-width="4"
+              class="spinner-ring"
+            ></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <header class="headerHome" role="banner">
+      <div class="lSection">
+        <a href="/" class="brand" aria-label="NaivaCom home">
+          <div class="naivaComLogo">
+            <img
+              src="images/NaivaComLogo.jpeg"
+              alt="NaivaCom Logo"
+              loading="lazy"
+            />
+          </div>
+          <span class="brandName">NaivaCom</span>
+        </a>
+      </div>
+
+      <nav class="rSection" role="navigation" aria-label="Primary">
+        <ul id="primary-navigation" class="navList">
+          <li><a class="headerBtns" href="#home">Home</a></li>
+          <li><a class="headerBtns" href="#about">About</a></li>
+          <li><a class="headerBtns" href="#services">Services</a></li>
+          <li><a class="headerBtns" href="#testimonials">Testimonials</a></li>
+          <li><a class="headerBtns" href="#projects">Projects</a></li>
+          <li><a class="headerBtns" href="#contacts">Contacts</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-controls header-controls--compact">
+        <button
+          id="theme-toggle"
+          class="themeToggle"
+          aria-pressed="false"
+          aria-label="Switch to light mode"
+        >
+          🌙
+        </button>
+        <button
+          class="hamburgerMenuBtn"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open menu"
+          data-toggle="nav"
+        >
+          <img
+            src="images/icons/hambugerMenuIcon-removebg.png"
+            alt="Open menu icon"
+          />
+        </button>
+      </div>
+    </header>
+
+    <section id="home" class="home">
+      <div class="hero hero-modern">
+        <div class="hero-inner">
+          <h1 class="hero-title">
+            Upgrade your business with a fast secure System
+          </h1>
+          <p class="hero-sub">
+            Trusted by startups and enterprises ~ practical design, measurable
+            results. We combine performance engineering with conversion-focused
+            UX to deliver sites that turn visitors into customers.
+          </p>
+
+          <div class="hero-ctas">
+            <a class="button-like primary-gradient" href="build.html"
+              >Start a project 💻</a
+            >
+            <a class="button-like" href="#services">Our services 💡</a>
+          </div>
+
+          <div class="hero-trust">
+            <span class="trust-item">🚀 99% uptime & performance</span>
+            <span class="trust-item">🛡️🔒 Security-minded</span>
+            <span class="trust-item">📈 Proven growth</span>
+            <span class="trust-item">⭐ 29+ Satisfied Clients</span>
+            <span class="trust-item">👩‍🏫 24/7 client support</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="about" class="homeAboutContainer">
+        <h1 class="whoWe">Who are we?</h1>
+        <h2 id="team" class="teamTitle">Our Team</h2>
+        <div class="whoWeDesc">
+          <ul>
+            <li>
+              Naivacom is your web development partner with Highly skilled
+              developers for your business solutions
+            </li>
+            <li>
+              We are situated in Nairobi CBD where we offer our quality services
+              to all our customers in and out of Kenya.
+              <span><a href="#contacts">>Find Us </a></span>
+            </li>
+            <li>
+              Our team Comprises of 100% Professional Developers, marketing
+              specialists and law experts from different fields to ensure our
+              services are well graded and have high quality assurance for your
+              contentment.
+              <span><a href="#team">>See Team</a></span>
+            </li>
+            <li>
+              We integrate the latest technology valuing deep understanding of
+              the systems we design to ensure proper maintenance and easier
+              scalability as your business grows.
+              <span><a href="#projects">>Projects</a></span>
+            </li>
+            <li>
+              We have provided 20+ services for both small scale and many mid to
+              large scale companies, businesses and other start-ups.
+              <span><a href="#testimonials"> >Testimonials</a></span>
+            </li>
+            <li>
+              We provide affordable web hosting for you to ensure your website
+              never fails to serve you.
+            </li>
+          </ul>
+        </div>
+        <div class="findMoreBtn">
+          <a href="blog.html" class="button-like">Find out More &gt;</a>
+        </div>
+        <!-- Team grid -->
+        <section id="team-grid" class="team-grid" aria-label="Our Team">
+          <h2 class="section-title">Meet the Team</h2>
+          <p class="team-sub">
+            A group of experienced professionals dedicated to building
+            high-quality web experiences.
+          </p>
+          <div id="team-list" class="team-cards" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <section id="services" class="services">
+        <h1>Services</h1>
+        <div
+          class="svsItemContainer"
+          id="services-list"
+          aria-live="polite"
+        ></div>
+      </section>
+
+      <section id="projects" class="projects">
+        <h1>Projects</h1>
+        <div class="svsItemContainer" id="projects-list"></div>
+      </section>
+
+      <section id="testimonials" class="testimonials">
+        <h1>Testimonials</h1>
+        <div
+          id="testimonials-list"
+          class="testimonials-list"
+          aria-live="polite"
+        ></div>
+      </section>
+
+      <div id="contacts" class="contacts">
+        <h1>Contacts</h1>
+        <div class="contacts-inner">
+          <div class="contact-details">
+            <p>
+              <strong>Email:</strong>
+              <a href="mailto:info@naivacom.com">info@naivacom.com</a>
+            </p>
+            <p>
+              <strong>Phone:</strong>
+              <a href="tel:+254796185828">+254 796 185828</a>
+            </p>
+            <p><strong>Office hours:</strong> Mon-Fri 09:00 ~ 17:00</p>
+            <p><strong>Address:</strong> Vienna Courts, Kilimani, Nairobi</p>
+            <p><strong>Postal:</strong> PO Box 50138-00100, Nairobi GPO</p>
+          </div>
+
+          <form class="contact-form--stacked">
+            <input type="text" name="name" placeholder="Your name" />
+            <input type="email" name="email" placeholder="Your email" />
+            <textarea
+              name="message"
+              placeholder="How can we help?"
+              rows="4"
+            ></textarea>
+            <button type="submit">Send</button>
+          </form>
+
+          <div class="map-preview-wrap">
+            <h3>Our location</h3>
+            <a
+              href="https://www.google.com/maps?q=Vienna+Courts+Kilimani+Nairobi+PO+Box+50138-00100+Nairobi+GPO"
+              class="map-preview"
+              target="_blank"
+              rel="noopener"
+            >
+              <iframe
+                src="https://www.google.com/maps?q=Vienna+Courts+Kilimani+Nairobi+PO+Box+50138-00100+Nairobi+GPO&output=embed"
+                aria-hidden="true"
+              ></iframe>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div class="footer-left">
+            <a href="/" class="brandName">NaivaCom</a>
+            <p class="muted">Building modern websites & apps Worldwide</p>
+          </div>
+          <div class="footer-right">
+            <p>
+              <a
+                href="mailto:info@naivacom.com"
+                class="footer-contact email-link"
+              >
+                <img
+                  src="images/icons/email.svg"
+                  alt="email"
+                  width="16"
+                  height="16"
+                />
+                <span>info@naivacom.com</span>
+              </a>
+            </p>
+            <p>
+              <a
+                href="https://wa.me/254796185828"
+                target="_blank"
+                rel="noopener"
+                class="footer-contact whatsapp-link"
+              >
+                <img
+                  src="images/icons/whatsapp.svg"
+                  alt="whatsapp"
+                  width="16"
+                  height="16"
+                />
+                <span>Chat on WhatsApp</span>
+              </a>
+            </p>
+            <p>
+              <a href="build.html" class="start-project button-like"
+                >Start a Project</a
+              >
+            </p>
+          </div>
+        </div>
+      </footer>
+    </section>
+    <script>
+      // Hide the welcome curtain once the page is loaded, or after a short timeout
+      (function () {
+        const curtain = document.getElementById("welcome-curtain");
+        const hideCurtain = (fast) => {
+          if (!curtain || curtain.dataset.hidden) return;
+          curtain.dataset.hidden = "1";
+          curtain.setAttribute("aria-hidden", "true");
+          // use a shorter transition when 'fast' is true (timeout fallback)
+          if (fast) curtain.classList.add("curtain-fast-hide");
+          curtain.classList.add("curtain-hidden");
+          // remove from DOM after animation completes to free up paint
+          setTimeout(() => curtain.remove(), fast ? 400 : 900);
+        };
+
+        // Wait for window load (images/fonts) but respect reduced-motion
+        if (
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          // Immediately hide without animation
+          window.addEventListener("load", () => hideCurtain(true));
+        } else {
+          window.addEventListener("load", () => hideCurtain(false));
+          // Fallback: ensure curtain hides after 2.5s in case load event is delayed
+          setTimeout(() => hideCurtain(true), 2500);
+        }
+      })();
+    </script>
+  </body>
+</html>

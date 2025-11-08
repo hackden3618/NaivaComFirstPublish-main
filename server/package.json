@@ -1,0 +1,14 @@
+{
+  "name": "naivacom-sync-server",
+  "version": "0.1.0",
+  "description": "Lightweight sync server for NaivaCom - accepts GET/PUT of site JSON",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2"
+  }
+}

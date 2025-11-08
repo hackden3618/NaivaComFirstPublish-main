@@ -1,0 +1,778 @@
+@keyframes slideUp {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 500px) {
+  .stats,
+  .actions {
+    display: flex;
+    flex-direction: column;
+  }
+  .actions {
+    gap: 10px;
+  }
+  .webIntro {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .svsItemContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.home {
+  margin-inline: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+}
+
+/* site-wide header height used to calculate hero breakout */
+:root {
+  --header-h: 76px;
+}
+
+/* prevent horizontal overflow when hero becomes full-bleed */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Make header fixed on home so hero can occupy the full viewport */
+.headerHome {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1200;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.35),
+    rgba(10, 10, 10, 0.15)
+  );
+  backdrop-filter: blur(6px);
+}
+
+/* Welcome curtain (covers viewport on first paint, provides calming animation) */
+.welcome-curtain {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 8, 15, 0.85),
+    rgba(6, 8, 15, 0.9)
+  );
+  z-index: 9999;
+  transition: opacity 700ms cubic-bezier(0.22, 0.9, 0.33, 1), visibility 700ms;
+}
+.welcome-curtain.curtain-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.welcome-curtain.curtain-fast-hide {
+  transition-duration: 360ms;
+}
+.curtain-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  transform-origin: center;
+  animation: curtain-open 900ms cubic-bezier(0.22, 0.9, 0.33, 1) forwards;
+}
+.curtain-brand img {
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+.curtain-copy h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.curtain-copy .curtain-sub {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+
+.curtain-spinner {
+  width: 56px;
+  height: 56px;
+}
+.spinner-svg {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  animation: spinner-rot 1.2s linear infinite;
+}
+.spinner-ring {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-dasharray: 120;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+}
+
+@keyframes spinner-rot {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes curtain-open {
+  0% {
+    transform: scale(0.98) translateY(6%);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.01) translateY(-2%);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Reduced motion: keep things quick and subtle */
+@media (prefers-reduced-motion: reduce) {
+  .curtain-inner {
+    animation: none;
+  }
+  .spinner-svg {
+    animation: none;
+  }
+  .welcome-curtain {
+    transition: none;
+  }
+}
+/* ensure home content sits below fixed header */
+.hero {
+  min-height: 100vh; /* full viewport height */
+}
+
+/* Full-screen hero with background image and subtle overlay */
+.hero {
+  /* extend the hero so it reaches behind the fixed header */
+  min-height: calc(100vh + var(--header-h));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../images/backgroundHeroimgupscaled2K.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.headerHome {
+  z-index: 1200;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.35),
+    rgba(10, 10, 10, 0.15)
+  );
+  backdrop-filter: blur(6px);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* subtle darken + blur to keep text readable */
+  background: rgba(6, 8, 15, 0.36);
+  /* stronger blur to soften small background points and improve legibility */
+  backdrop-filter: blur(2px) saturate(120%);
+  -webkit-backdrop-filter: blur(2px) saturate(120%);
+  pointer-events: none;
+}
+/* make hero break out of centered container and fill full width */
+.home > .hero {
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  /* pull the hero upward so it visually covers the header area (header remains on top) */
+  margin-top: calc(-1 * var(--header-h));
+  /* increase hero height so the visible area covers the viewport plus header */
+  min-height: calc(100vh + var(--header-h));
+  border-radius: 0; /* remove rounding for full-bleed */
+}
+
+/* light-mode background override - uses a lighter hero image */
+html.light .hero {
+  background-image: url("/images/the-man-stands-on-the-balcony-on-the-cityscape-background-hyperlapse_imgupscaler.ai_v1(Fast)_2K.jpg");
+}
+
+/* tweak overlay for light mode for better contrast */
+html.light .hero::before {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(1px) saturate(105%);
+}
+.hero {
+  --hero-h: clamp(320px, 40vh, 520px);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.6));
+  z-index: 1;
+  pointer-events: none;
+}
+.hero .homeContainer {
+  position: relative;
+  z-index: 2;
+  min-height: var(--hero-h);
+  padding: 28px;
+}
+.hero .homeContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+.hero .homeContainer {
+  position: relative;
+  z-index: 2;
+}
+.homeAboutContainer,
+.services,
+.testimonials,
+.projects,
+.contacts {
+  /* glassy card look: translucent background + backdrop blur */
+  background-color: rgba(26, 34, 46, 0.55);
+  /* slightly stronger glass blur for a more modern, security-minded feel */
+  backdrop-filter: blur(12px) saturate(125%);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  border-radius: 20px;
+  padding: 20px;
+  flex: 1;
+  margin-bottom: 80px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+.homeContainer {
+  animation-name: slideUp;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+}
+
+/* New modern hero layout (used in index.html) */
+.hero-modern {
+  position: relative;
+}
+.hero-modern .hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  padding: 56px 28px;
+  box-sizing: border-box;
+  display: grid;
+  gap: 18px;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero-modern .hero-inner {
+    max-width: 1100px;
+    padding: 96px 64px;
+    justify-items: start;
+    text-align: left;
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero-kicker {
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+.hero-title {
+  font-size: clamp(1.6rem, 3.6vw, 3.4rem);
+  margin: 0;
+  color: #fff;
+  line-height: 1.02;
+  font-weight: 800;
+}
+.hero-sub {
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 760px;
+  font-size: 1.05rem;
+}
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+.hero-ctas .button-like {
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+.hero-ctas .primary-gradient {
+  background: linear-gradient(90deg, #2b6be6, #4f9ef6);
+  color: #fff;
+}
+.hero-trust {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.hero-trust .trust-item {
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px) saturate(120%);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+  .hero-modern .hero-inner {
+    padding: 24px 18px;
+  }
+  .hero-sub {
+    font-size: 0.98rem;
+  }
+  .hero-trust {
+    gap: 8px;
+  }
+}
+
+.introTitle {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+}
+.webIntro {
+  /* animate intro with a gentle rise and fade */
+  animation: fadeInUp 900ms ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.moreIntro {
+  color: var(--muted);
+  font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation-name: slideLeft;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  padding: 15px;
+}
+.stats {
+  animation: fadeInUp 1100ms ease both;
+}
+.unit {
+  padding: 20px;
+}
+
+/* Scroll reveal helpers (reveal from right with stagger) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 700ms ease,
+    transform 700ms cubic-bezier(0.22, 0.9, 0.33, 1);
+  will-change: transform, opacity;
+}
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: none;
+}
+.reveal-right {
+  transform: translateX(36px);
+}
+.reveal-right.revealed {
+  transform: none;
+}
+.reveal-delay-1 {
+  transition-delay: var(--reveal-delay, 100ms);
+}
+.reveal-delay-2 {
+  transition-delay: calc(var(--reveal-delay, 100ms) * 2);
+}
+.reveal-delay-3 {
+  transition-delay: calc(var(--reveal-delay, 100ms) * 3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .reveal-right {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+.value {
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  color: var(--accent);
+}
+.desc {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: darkgray;
+}
+.actions {
+  display: flex;
+  justify-content: space-around;
+  height: fit-content;
+  animation-name: slideLeft;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  padding: 20px;
+}
+.actions {
+  animation: fadeInUp 1300ms ease both;
+}
+.actions .button-like {
+  transform: translateY(6px);
+  opacity: 0;
+  animation: actionPop 700ms ease forwards;
+}
+.actions .button-like:nth-child(1) {
+  animation-delay: 1.2s;
+}
+.actions .button-like:nth-child(2) {
+  animation-delay: 1.35s;
+}
+.actions .button-like:nth-child(3) {
+  animation-delay: 1.5s;
+}
+
+@keyframes actionPop {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.actions button {
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 10px 24px;
+}
+.buildBtn {
+  background-color: var(--accent);
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.7);
+  transition: all 0.2s;
+}
+.buildBtn:hover {
+  /* switch to brand accent color on hover; use !important to override gradient classes */
+  background: var(--accent) !important;
+  color: white !important;
+  text-shadow: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+.homeAboutContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  animation-name: slideLeft;
+  animation-duration: 1.3s;
+  animation-fill-mode: forwards;
+}
+.whoWe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.whoWeDesc {
+  background-color: rgb(20, 20, 20);
+  border-radius: 20px;
+  color: var(--muted);
+}
+.whoWeDesc a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.whoWeDesc li {
+  display: flex;
+  flex-direction: column;
+}
+.findMoreBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.findMoreBtn button {
+  font-size: 20px;
+  padding: 10px 40px;
+}
+.services {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.04);
+  flex-wrap: wrap;
+  width: 100%;
+}
+/* Services grid - let items freely size and avoid clipping */
+.svsItemContainer {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  /* allow rows to size to content (prevents clipping) */
+  grid-auto-rows: auto;
+  align-items: start;
+}
+
+.svsLinkers {
+  text-decoration: none;
+}
+
+.svsItem {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.svsItem .card {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* important for flex children to not overflow */
+}
+
+.svsItem:hover .card {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Use aspect-ratio for images so they scale smoothly across sizes */
+.svsItem img,
+.card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  max-height: 360px; /* avoid overly tall images on very large screens */
+}
+
+.svsItem p {
+  padding: 18px 12px;
+  font-size: 1rem;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* card helpers used for services and projects */
+.card {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.12));
+  overflow: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+.card .card-body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card .card-body h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #fff;
+}
+.card .muted {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* testimonials */
+.testimonials-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 12px;
+}
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+.testimonial-card .quote {
+  font-style: italic;
+  margin: 0 0 8px 0;
+  color: #f1f1f1;
+}
+.testimonial-card footer {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.testimonial-card .role {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* tweet-style testimonial */
+.testimonial-card.tweet-style {
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.testimonial-card.tweet-style .avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 56px;
+}
+.testimonial-card.tweet-style .tweet-body {
+  flex: 1;
+}
+.testimonial-card.tweet-style .tweet-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.95rem;
+}
+.testimonial-card.tweet-style .rating {
+  margin-left: auto;
+  color: var(--accent);
+  font-weight: 700;
+}
+.testimonial-card.tweet-style .quote {
+  margin: 8px 0 0 0;
+}
+
+@media (max-width: 640px) {
+  .card img {
+    aspect-ratio: 3 / 2;
+    max-height: 160px;
+  }
+  /* avoid forcing a fixed svsItem height on small screens */
+  .svsItem {
+    height: auto;
+  }
+  /* tighter header padding for small screens */
+  .home {
+    padding-top: 64px;
+  }
+}
+
+/* Large screens: increase min column size so cards can use more horizontal space */
+@media (min-width: 1600px) {
+  .svsItemContainer {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  .svsItem img,
+  .card img {
+    max-height: 480px;
+  }
+}
+
+/* reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: revealUp 0.5s forwards ease-out;
+}
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .home {
+    margin-top: 72px;
+  }
+  .homeContainer,
+  .homeAboutContainer {
+    width: 95%;
+  }
+}
+
+/* Light theme glass tweaks */
+html.light .homeContainer,
+html.light .homeAboutContainer,
+html.light .services,
+html.light .testimonials,
+html.light .projects,
+html.light .contacts {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #0b1220;
+  border: 1px solid rgba(10, 10, 10, 0.06);
+  backdrop-filter: blur(6px) saturate(110%);
+  -webkit-backdrop-filter: blur(6px) saturate(110%);
+}
+
+/* testimonial quote color for light mode */
+html.light .testimonial-card .quote {
+  color: #444444; /* dark gray for good contrast */
+}
+
+/* Additional light mode tweaks for home page */
+html.light .introTitle,
+html.light .moreIntro {
+  color: #0b1220;
+}
+html.light .unit .value {
+  color: var(--accent);
+}
+html.light .whoWeDesc {
+  background: rgba(255, 255, 255, 0.96);
+  color: #0b1220;
+}
+html.light .buildBtn {
+  background: linear-gradient(90deg, #2b6be6, #4f9ef6);
+  color: #fff;
+}
+html.light .button-like {
+  color: white;
+  background: var(--glass);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}

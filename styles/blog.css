@@ -1,0 +1,127 @@
+/* Minimal styling that matches the site's aesthetic */
+:root {
+  --bg: #0f1724;
+  --card: #0f172420;
+  --accent: #2b6be6;
+  --muted: #9aa4b2;
+  --glass: rgba(255, 255, 255, 0.06);
+}
+body {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: linear-gradient(180deg, #071028, #0f1724);
+  color: #e6eef8;
+  margin: 0;
+  padding: 24px;
+}
+.site-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+}
+.brand.small {
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+.center-card {
+  max-width: 880px;
+  margin: 24px auto;
+  padding: 24px;
+}
+.soon {
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+.soon h1 {
+  margin: 0 0 12px;
+  font-size: 1.6rem;
+}
+.soon .lead {
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.soon .warm {
+  font-style: italic;
+  color: #cfe8ff;
+}
+.actions {
+  margin-top: 16px;
+}
+.button-like {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.button-like.primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+.subscribe {
+  background-color: var(--glass);
+  backdrop-filter: blur(1px);
+  border-radius: 18px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.subscribe input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 8px;
+  border: none;
+}
+.subscribe button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  border: none;;
+}
+#sub-msg {
+  margin-top: 8px;
+  color: var(--accent);
+}
+
+/* Light theme tweaks */
+html.light body {
+  background: none;
+  color: #0b1220;
+}
+html.light .soon,
+html.light .center-card {
+  background: rgba(255, 255, 255, 0.6);
+  color: #0b1220;
+  box-shadow: 0 8px 20px rgba(10, 10, 10, 0.06);
+}
+html.light .button-like {
+  color: #0b1220;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+html.light .button-like.primary,
+html.light .subscribe button {
+  background: var(--accent);
+  color: #fff;
+}
+html.light .brand.small {
+  color: var(--accent);
+}
+
+/* small extracted helpers */
+.header-controls--compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.map-preview-wrap {
+  margin-top: 12px;
+}

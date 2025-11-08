@@ -1,0 +1,697 @@
+:root {
+  --bg: hsl(240 10% 7% / 0.85);
+  --accent: #b37a00;
+  --primary: #491574;
+  --muted: #bdbdbd;
+  --card: rgba(26, 34, 46, 0.9);
+  --glass: rgba(0, 0, 0, 0.55);
+  --radius: 18px;
+  --gap: 16px;
+  color-scheme: light dark;
+}
+
+/* Light theme -- add class 'light' on html or body to switch */
+html.light {
+  --bg: #f4f6f8;
+  --accent: #b37a00;
+  --primary: #3b2a6c;
+  --muted: #5f6b72;
+  --card: rgba(255, 255, 255, 0.95);
+  --glass: rgba(255, 255, 255, 0.7);
+  color: #0b1220;
+}
+
+html.light h1,
+html.light h2,
+html.light h3 {
+  color: #0b1220;
+}
+
+/* In light mode prefer a clean background (no heavy neon image) for readability */
+html.light body {
+  /* use the luxurious light background image for light theme */
+  background-image: url("../images/icons/luxuriousBackgroundLight_imgupscaler.ai_General_4K.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  color: white;
+  background-image: url("../images/dark-hexagonal-neon-light-background_485324-2534_imgupscaler.ai_General_4K.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--bg);
+  transition: background-color 0.25s ease, color 0.2s ease;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* utility */
+p {
+  margin: 0;
+}
+ul {
+  padding-left: 1.2rem;
+}
+li {
+  margin: 0.6rem 0;
+}
+
+/* buttons & links */
+button,
+.headerBtns,
+a.button-like {
+  color: white;
+  font-weight: 600;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 8px 14px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    background-color 0.18s ease;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+/* gradient primary used by build submit button */
+.primary-gradient {
+  background: linear-gradient(90deg, #2b6be6, #2563eb);
+  color: white;
+}
+button:hover,
+.headerBtns:hover,
+a.button-like:hover {
+  transform: translateY(-3px);
+  color: #9fffe0;
+  background-color: rgba(0, 0, 0, 0.28);
+  box-shadow: 1px 1px 12px rgba(0, 255, 255, 0.08);
+}
+button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* small helpers for containers */
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+/* anchor offset for fixed header */
+:target:before {
+  content: "";
+  display: block;
+  height: 82px;
+  margin-top: -82px;
+}
+
+input,
+textarea {
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  color: inherit;
+}
+
+/* Link colors: green by default, red when clicked/visited/active */
+a,
+a.button-like,
+.headerBtns {
+  color: #16a34a; /* green-600 */
+}
+a:visited,
+a:active {
+  color: #ef4444; /* red-500 */
+}
+
+/* Buttons / button-like elements should always show white text for clarity */
+button,
+.button-like,
+.primary-gradient,
+.buildBtn,
+input[type="submit"] {
+  color: white !important;
+}
+
+/* Header links should stay white for consistent header appearance */
+.headerBtns,
+.headerBtns:visited,
+.headerBtns:active {
+  color: white !important;
+}
+
+/* In light mode, buttons should use dark text for contrast */
+html.light button,
+html.light .button-like,
+html.light .primary-gradient,
+html.light .buildBtn,
+html.light input[type="submit"] {
+  color: #0b1220 !important;
+}
+
+/* Brand name accent in header (goldish) */
+.brandName {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+/* Map preview used across pages */
+.map-preview {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.45);
+  background: rgba(0, 0, 0, 0.12);
+}
+.map-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+input::placeholder,
+textarea::placeholder {
+  /* use the --muted variable so placeholder remains visible in both themes */
+  color: var(--muted);
+  opacity: 0.95;
+}
+
+/* theme toggle small styles */
+.themeToggle {
+  background: transparent;
+  border-radius: 10px;
+  padding: 6px;
+  font-size: 18px;
+}
+.themeToggle[aria-pressed="true"] {
+  background: var(--glass);
+}
+
+/* Team grid styling */
+.team-grid {
+  margin-top: 22px;
+  padding: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 34, 46, 0.5),
+    rgba(26, 34, 46, 0.5)
+  );
+  border-radius: 14px;
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+.team-grid .section-title {
+  margin: 0 0 6px 0;
+  font-size: 1.35rem;
+}
+.team-grid .team-sub {
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.team-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+.team-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+.team-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex: 0 0 72px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Admin collapsible sections */
+.admin-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 8px 12px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.06));
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 8px;
+}
+.admin-section-header .section-toggle {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.admin-section-content {
+  padding: 10px 12px 18px 12px;
+}
+.admin-section.collapsed .admin-section-content {
+  display: none;
+}
+
+/* Drag handle and draggable rows in admin */
+.draggable-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.draggable-row .drag-handle {
+  cursor: grab;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  user-select: none;
+}
+.draggable-row.dragging {
+  opacity: 0.6;
+}
+.draggable-row .meta {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.team-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* team card link - remove underline but keep accessible focus and hover styles */
+.team-card-link {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+.team-card-link:focus,
+.team-card-link:hover {
+  text-decoration: none;
+  outline: none;
+}
+.team-name {
+  margin: 0;
+  font-size: 1.05rem;
+  color: white;
+}
+.team-role {
+  margin: 6px 0 0 0;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 700px) {
+  .team-cards {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+  .team-avatar {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Service links & shared card styles (shared between home & build)
+   Ensure build.html services visually match the homepage and links
+   don't show an underline while remaining accessible.
+   ------------------------------------------------------------------ */
+
+/* wrapper used by JS when rendering services */
+.service-link-wrap,
+.svsLinkers {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.service-link-wrap:focus-visible,
+.service-link-wrap:focus {
+  outline: 3px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+.service-link-wrap:hover,
+.service-link-wrap:focus {
+  text-decoration: none;
+}
+
+/* Shared grid/container for service cards (applies to build page too) */
+.svsItemContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.svsItem {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+/* card visuals reused from home.css so build page matches */
+.svsItem .card,
+.card {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.12));
+  overflow: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+.card .card-body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card .card-body h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #fff;
+}
+.card .muted {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* subtle hover lift for service cards */
+.svsItem:hover .card,
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* ------------------------------------------------------------------
+   Footer (glassy, blurred and distinct from other sections)
+   ------------------------------------------------------------------ */
+.site-footer {
+  margin-top: 18px;
+  padding: 28px 0;
+  background: var(--glass);
+  width: 100vw;
+}
+.site-footer::before {
+  /* full-bleed glassy background strip */
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 160px;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 -6px 30px rgba(2, 6, 23, 0.6);
+}
+.site-footer .footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  margin: 0 auto;
+  padding-inline: 16px;
+  position: relative;
+}
+.site-footer .footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.site-footer .footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: right;
+}
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-footer .brandName {
+  font-weight: 800;
+  color: var(--accent) !important;
+  text-decoration: none;
+}
+
+/* Light mode footer tweak */
+html.light .site-footer {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(255, 255, 255, 0.86)
+  );
+  border-top: 1px solid rgba(10, 10, 10, 0.06);
+  color: #0b1220;
+}
+html.light .site-footer a {
+  color: #0b1220;
+}
+
+/* Responsive footer: stack on small screens */
+@media (max-width: 700px) {
+  .site-footer .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .site-footer .footer-right {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Small screens: ensure service grid compresses nicely */
+@media (max-width: 640px) {
+  .svsItemContainer {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+  }
+  .card img {
+    height: 120px;
+  }
+}
+
+/* footer: rounded and span bottom edge inside the layout */
+.site-footer {
+  border-radius: 12px 12px 0 0;
+  margin: 28px 0 0 0;
+}
+
+.footer-contact {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+  text-decoration: none;
+  color: var(--muted);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+.footer-contact:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  color: white;
+}
+
+.whatsapp-link img {
+  filter: none; /* ensure original SVG color shows if provided */
+}
+.whatsapp-link {
+  background: linear-gradient(
+    90deg,
+    rgba(37, 211, 102, 0.12),
+    rgba(37, 211, 102, 0.06)
+  );
+  color: #00a884;
+  border: 1px solid rgba(0, 168, 132, 0.08);
+}
+.whatsapp-link:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(37, 211, 102, 0.18),
+    rgba(37, 211, 102, 0.12)
+  );
+  color: white;
+}
+
+.email-link img,
+.whatsapp-link img {
+  width: 18px;
+  height: 18px;
+}
+
+/* build page: make choose buttons higher contrast (similar to consult buttons) */
+.choose-service {
+  background: linear-gradient(90deg, #2b6be6, #2563eb);
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+.choose-service:hover {
+  transform: translateY(-3px);
+}
+
+/* make 'Our Services' titles more visible in light mode */
+html.light #services h1,
+html.light .services h1 {
+  color: #0b1220;
+  text-shadow: none;
+}
+
+/* Mobile adjustments for admin and general small screens */
+@media (max-width: 600px) {
+  /* Make admin rows stack vertically and buttons full width */
+  .draggable-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px 6px;
+  }
+  .draggable-row .meta {
+    order: 1;
+  }
+  .draggable-row .drag-handle {
+    order: 0;
+    justify-self: start;
+    width: 44px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  .draggable-row > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    order: 2;
+  }
+  .draggable-row > div:last-child button {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-align: left;
+  }
+
+  /* Make form inputs and buttons full width inside admin forms */
+  #team-form input,
+  #team-form textarea,
+  #team-form button,
+  #service-form input,
+  #service-form textarea,
+  #service-form button,
+  #project-form input,
+  #project-form textarea,
+  #project-form button,
+  #testimonial-form input,
+  #testimonial-form textarea,
+  #testimonial-form button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Reduce header/section padding */
+  .admin-section-header {
+    padding: 8px;
+  }
+  .admin-section-content {
+    padding: 8px;
+  }
+
+  /* Hide long previews or compress meta imagery */
+  .draggable-row .meta img.thumb {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Force footer to keep a visible glassy background in both themes
+   by using a full-bleed ::before layer positioned behind the footer.
+*/
+.site-footer {
+  position: relative !important;
+  z-index: 1;
+}
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 220px;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.22));
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 -6px 30px rgba(2, 6, 23, 0.6);
+}
+
+/* Light mode override: lighter glass so text is readable */
+html.light .site-footer::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 255, 255, 0.9)
+  );
+  border-top: 1px solid rgba(10, 10, 10, 0.06);
+  box-shadow: 0 -4px 18px rgba(10, 10, 10, 0.06);
+}

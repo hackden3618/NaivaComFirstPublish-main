@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NaivaCom Admin</title>
+    <link rel="icon" href="images/icons/settingIcon.webp" />
+    <link rel="stylesheet" href="styles/general.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/admin.css" />
+    <script defer src="scripts/home.js"></script>
+    <script defer src="scripts/admin.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Welcome Admin ~ Content Manager</h1>
+      <div id="edit-controls">
+        <button id="toggle-edit">Enable Editing</button>
+        <span id="edit-status">Editing is disabled view-only</span>
+        <!-- Remote sync configuration -->
+        <div
+          id="remote-config"
+          style="
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-left: 12px;
+          "
+        >
+          <input
+            id="remote-endpoint"
+            placeholder="Remote endpoint (https://...)"
+            style="min-width: 260px"
+          />
+          <input
+            id="remote-key"
+            placeholder="Secret key (optional)"
+            style="width: 160px"
+          />
+          <button id="save-remote" type="button">Save</button>
+          <button id="post-remote" type="button">Post to server</button>
+          <span id="post-status" aria-live="polite" style="margin-left:8px;font-weight:600;"></span>
+        
+        <!-- Processes / terminal viewer -->
+        <button id="toggle-processes" type="button" aria-expanded="false">Show processes</button>
+        </div>
+      </div>
+
+      <div id="processes-panel" style="display:none;margin-top:12px;">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button id="clear-process-log" type="button">Clear</button>
+          <button id="pause-process-log" type="button">Pause</button>
+          <div style="margin-left:auto;color:var(--muted);font-size:0.9rem;">Terminal view (sync & posting activity)</div>
+        </div>
+        <pre id="process-log" class="process-log" aria-live="polite"></pre>
+      </div>
+        </div>
+      </div>
+      <section id="admin-services">
+        <h2>Services</h2>
+        <form id="service-form">
+          <input name="title" placeholder="Title" required />
+          <input name="image" placeholder="Image path (optional)" />
+          <textarea
+            name="description"
+            placeholder="Short description"
+          ></textarea>
+          <button type="submit">Add Service</button>
+        </form>
+        <div class="list" id="admin-services-list"></div>
+      </section>
+
+      <section id="admin-testimonials">
+        <h2>Testimonials</h2>
+        <form id="testimonial-form">
+          <input name="name" placeholder="Name" required />
+          <input name="role" placeholder="Role / Company" />
+          <input name="avatar" placeholder="Avatar image path (optional)" />
+          <label class="muted-label">Rating (0-100, e.g. 85)</label>
+
+          <input
+            name="rating"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="Score out of 100 (tens)"
+          />
+          <textarea name="comment" placeholder="Comment" required></textarea>
+          <button type="submit">Add Testimonial</button>
+        </form>
+        <div class="list" id="admin-testimonials-list"></div>
+      </section>
+
+      <section id="admin-projects">
+        <h2>Projects</h2>
+        <form id="project-form">
+          <input name="title" placeholder="Project title" required />
+          <input name="image" placeholder="Image path (optional)" />
+          <input name="link" placeholder="External link (https://...)" />
+          <textarea
+            name="description"
+            placeholder="Short description"
+          ></textarea>
+          <button type="submit">Add Project</button>
+        </form>
+        <div class="list" id="admin-projects-list"></div>
+      </section>
+
+      <button id="clear-data">Clear all saved data</button>
+    </main>
+
+    <!-- Password gate overlay -->
+    <div id="pw-gate">
+      <form id="pw-form">
+        <h2>Admin Login</h2>
+        <input
+          id="pw-input"
+          type="password"
+          placeholder="Enter admin password"
+          autofocus
+        />
+        <div class="pw-actions">
+          <button type="submit">Enter</button>
+        </div>
+        <p class="pw-hint">Hint: contact site owner</p>
+        <p id="pw-error"></p>
+      </form>
+    </div>
+
+    <!-- admin behaviour moved to scripts/admin.js -->
+    <!-- Generic modal used by admin scripts for prompts and confirmations -->
+    <div id="admin-generic-modal" style="display: none" aria-hidden="true">
+      <div class="modal-overlay"></div>
+      <div class="modal-dialog">
+        <h3 id="modal-title"></h3>
+        <div id="modal-body"></div>
+        <div class="modal-actions">
+          <button id="modal-cancel">Cancel</button>
+          <button id="modal-confirm">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="admin-toasts" aria-live="polite"></div>
+  </body>
+</html>

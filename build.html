@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Start a Project ~ NaivaCom</title>
+    <link rel="icon" href="../images/icons/NaivaComLogo-removebg.png" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/build.css" />
+    <link rel="stylesheet" href="styles/general.css" />
+    <script defer src="scripts/home.js"></script>
+    <script defer src="scripts/build.js"></script>
+  </head>
+  <body>
+    <header class="headerHome" role="banner">
+      <div class="lSection">
+        <a href="/" class="brand" aria-label="NaivaCom home">
+          <div class="naivaComLogo">
+            <img
+              src="images/NaivaComLogo.jpeg"
+              alt="NaivaCom Logo"
+              loading="lazy"
+            />
+          </div>
+          <span class="brandName">NaivaCom</span>
+        </a>
+      </div>
+
+      <nav class="rSection" role="navigation" aria-label="Primary">
+        <ul id="primary-navigation" class="navList">
+          <li><a class="headerBtns" href="#home">Home</a></li>
+          <li><a class="headerBtns" href="#about">About</a></li>
+          <li><a class="headerBtns" href="#services">Services</a></li>
+          <li><a class="headerBtns" href="#testimonials">Testimonials</a></li>
+          <li><a class="headerBtns" href="#projects">Projects</a></li>
+          <li><a class="headerBtns" href="#contacts">Contacts</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-controls header-controls--compact">
+        <button
+          id="theme-toggle"
+          class="themeToggle"
+          aria-pressed="false"
+          aria-label="Switch to light mode"
+        >
+          🌙
+        </button>
+        <button
+          class="hamburgerMenuBtn"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open menu"
+          data-toggle="nav"
+        >
+          <img
+            src="images/icons/hambugerMenuIcon-removebg.png"
+            alt="Open menu icon"
+          />
+        </button>
+      </div>
+    </header>
+
+    <main class="build-main">
+      <section class="hero-card">
+        <h1>Let's build something exceptional</h1>
+        <p class="lead">
+          You're one click away from turning your idea into a polished product.
+          Fill the form below and we'll take care of the rest. We will also send
+          a WhatsApp summary.
+        </p>
+      </section>
+
+      <section class="form-card">
+        <form id="build-form">
+          <div class="field">
+            <label for="clientName">Your name</label>
+            <input id="clientName" name="name" required />
+          </div>
+          <div class="field">
+            <label for="clientEmail">Email</label>
+            <input id="clientEmail" name="email" type="email" required />
+          </div>
+          <div class="field">
+            <label for="clientPhone">Phone (optional)</label>
+            <input
+              id="clientPhone"
+              name="phone"
+              type="tel"
+              placeholder="+2547..."
+            />
+          </div>
+          <div class="field">
+            <label for="service">What are you looking for?</label>
+            <select id="service" name="service">
+              <!-- options will be populated by scripts/build.js based on available services -->
+            </select>
+          </div>
+          <div class="field">
+            <label for="details">Project details</label>
+            <textarea
+              id="details"
+              name="details"
+              rows="5"
+              placeholder="Describe your idea, goals and timeline"
+            ></textarea>
+          </div>
+
+          <div class="actions">
+            <button id="submitBtn" type="submit">
+              Submit project <span id="emoji">🚀</span>
+            </button>
+          </div>
+
+          <p id="feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+        <section class="services-preview">
+          <h3>Our Services</h3>
+          <div id="build-services-list" class="svsItemContainer"></div>
+        </section>
+
+      <aside class="help">
+        <h3>Prefer email or WhatsApp?</h3>
+        <p>
+          We'll email <strong>info@naivacom</strong> and open a WhatsApp summary
+          to <strong>+254796185828</strong> so you're kept in the loop.
+        </p>
+        <p class="icons">
+          <a href="mailto:info@naivacom" aria-label="Email NaivaCom"
+            ><img src="images/icons/email.svg" alt="email" width="28"
+          /></a>
+          <a
+            href="https://wa.me/254796185828"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp NaivaCom"
+            ><img src="images/icons/whatsapp.svg" alt="whatsapp" width="28"
+          /></a>
+        </p>
+        <div class="map-preview-wrap">
+          <h4>Our location</h4>
+          <a
+            href="https://www.google.com/maps?q=Vienna+Courts+Kilimani+Nairobi+PO+Box+50138-00100+Nairobi+GPO"
+            class="map-preview"
+            target="_blank"
+            rel="noopener"
+          >
+            <iframe
+              src="https://www.google.com/maps?q=Vienna+Courts+Kilimani+Nairobi+PO+Box+50138-00100+Nairobi+GPO&output=embed"
+              aria-hidden="true"
+            ></iframe>
+          </a>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

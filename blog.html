@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NaivaCom Blog</title>
+    <link rel="icon" href="../images/icons/NaivaComLogo-removebg.png" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/blog.css" />
+    <link rel="stylesheet" href="styles/general.css" />
+    <script defer src="scripts/home.js"></script>
+    <script defer src="scripts/blog.js"></script>
+  </head>
+  <body>
+    <header class="headerHome" role="banner">
+      <div class="lSection">
+        <a href="/" class="brand" aria-label="NaivaCom home">
+          <div class="naivaComLogo">
+            <img
+              src="images/NaivaComLogo.jpeg"
+              alt="NaivaCom Logo"
+              loading="lazy"
+            />
+          </div>
+          <span class="brandName">NaivaCom</span>
+        </a>
+      </div>
+
+      <nav class="rSection" role="navigation" aria-label="Primary">
+        <ul id="primary-navigation" class="navList">
+          <li><a class="headerBtns" href="#home">Home</a></li>
+          <li><a class="headerBtns" href="#about">About</a></li>
+          <li><a class="headerBtns" href="#services">Services</a></li>
+          <li><a class="headerBtns" href="#testimonials">Testimonials</a></li>
+          <li><a class="headerBtns" href="#projects">Projects</a></li>
+          <li><a class="headerBtns" href="#contacts">Contacts</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-controls header-controls--compact">
+        <button
+          id="theme-toggle"
+          class="themeToggle"
+          aria-pressed="false"
+          aria-label="Switch to light mode"
+        >
+          🌙
+        </button>
+        <button
+          class="hamburgerMenuBtn"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open menu"
+          data-toggle="nav"
+        >
+          <img
+            src="images/icons/hambugerMenuIcon-removebg.png"
+            alt="Open menu icon"
+          />
+        </button>
+      </div>
+    </header>
+
+    <main class="center-card">
+      <section class="soon">
+        <h1>We shall update the article page soon</h1>
+        <p class="lead">
+          Thanks for your interest in NaivaCom. We are preparing thoughtful and practical articles about web development, design and systems engineering. Coming very soon.
+        </p>
+        <p class="warm">
+          Warm greetings from the NaivaCom team. We appreciate your interest and will notify you when new articles are published.
+        </p>
+        <p class="actions">
+          <a
+            class="button-like"
+            href="/index.html"
+            target="_blank"
+            rel="noopener"
+            >Return home</a
+          >
+          <a
+            class="button-like primary-gradient"
+            href="build.html"
+            target="_blank"
+            rel="noopener"
+            >Start a project</a
+          >
+        </p>
+      </section>
+
+      <section class="subscribe">
+        <h2>Want a heads up?</h2>
+        <form id="subscribe-form">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            required
+          />
+          <label for="name">Name (optional)</label>
+          <input id="name" name="name" type="text" placeholder="Your name" />
+          <button type="submit">Notify me</button>
+          <p id="sub-msg" role="status" aria-live="polite"></p>
+        </form>
+        <div class="map-preview-wrap">
+          <h4>Our location</h4>
+          <a
+            href="https://www.google.com/maps?q=Vienna+Courts+Kilimani+Nairobi+PO+Box+50138-00100+Nairobi+GPO"
+            class="map-preview"
+            target="_blank"
+            rel="noopener"
+          >
+            <iframe
+              src="https://www.google.com/maps?q=Vienna+Courts+Kilimani+Nairobi+PO+Box+50138-00100+Nairobi+GPO&output=embed"
+              aria-hidden="true"
+            ></iframe>
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
